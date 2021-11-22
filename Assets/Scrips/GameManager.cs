@@ -67,10 +67,10 @@ namespace BWG
 
         private void Awake()
         {
-            SpawnIndicator(transform.position, transform.rotation);
-            _indicator.OnClick += SpawnCharacterAndProps;
             // initialize raycaster, override for tests
             SetRaycastProvider(gameObject.AddComponent<ARRaycastProvider>());
+            SpawnIndicator(transform.position, transform.rotation);
+            _indicator.OnClick += SpawnCharacterAndProps;            
         }
 
         private void SpawnCharacterAndProps()
@@ -84,7 +84,7 @@ namespace BWG
                     break;
 
                 var pose = _raycastProvider.GetRaycastResult(new Vector3(UnityEngine.Random.Range(0f, 1f), UnityEngine.Random.Range(0f, 1f)));
-                if (pose != default)
+                if (pose.position != Vector3.zero)
                 {
                     SpawnProp(pose.position, pose.rotation);
                     numOfSpawnedProps++;

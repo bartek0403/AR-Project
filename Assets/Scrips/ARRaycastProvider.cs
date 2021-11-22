@@ -19,7 +19,8 @@ namespace BWG
 
         public Pose GetRaycastResult(Vector3 origin)
         {
-            _arRaycastManager.Raycast(origin, _buffer, UnityEngine.XR.ARSubsystems.TrackableType.All);
+            _buffer.Clear();
+            _arRaycastManager.Raycast(Camera.main.ViewportPointToRay(origin), _buffer, UnityEngine.XR.ARSubsystems.TrackableType.All);
             if (_buffer.Count > 0)
             {
                 return _buffer[0].pose;

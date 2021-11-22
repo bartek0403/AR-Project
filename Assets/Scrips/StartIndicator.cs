@@ -33,7 +33,9 @@ namespace BWG
         {
             if (_raycastProvider != null)
             {
-                _raycastProvider.GetRaycastResult(new Vector3(0.5f, 0.5f, 0));
+                var pose = _raycastProvider.GetRaycastResult(new Vector3(0.5f, 0.5f, 0));
+                if (pose.position != Vector3.zero)
+                    transform.SetPositionAndRotation(pose.position, pose.rotation);
             }
         }
 

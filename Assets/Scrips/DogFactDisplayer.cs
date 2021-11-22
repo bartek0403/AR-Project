@@ -16,7 +16,7 @@ namespace BWG
         public async void DisplayFact()
         {
             var task = await _provider.GetDogFactUnity();
-            var presenter = GameObject.Instantiate(Resources.Load<FactPresenter>("FactPresenter"));
+            var presenter = GameObject.Instantiate(Resources.Load<FactPresenter>("FactPresenter"), GameObject.FindObjectOfType<Canvas>().transform);
             presenter.SetText(task.fact);
             presenter.ScheduleLifetime(3f);
         }

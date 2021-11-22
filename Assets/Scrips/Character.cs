@@ -14,7 +14,7 @@ namespace BWG
 
         private ICharacterInputProvider _inputProvider;
         private IRaycastProvider _raycastProvider;
-
+        private bool _groudFound;
         public void SetInputProvider(ICharacterInputProvider provider)
         {
             _inputProvider = provider;
@@ -45,7 +45,8 @@ namespace BWG
         // Update is called once per frame
         void Update()
         {
-            MoveCharacterToGround();
+            if(!_groudFound)
+                MoveCharacterToGround();
             UpdateTurn();
         }
 
@@ -70,10 +71,11 @@ namespace BWG
             {
                 var characterPosOnScreen = _raycastProvider.GetPositionOnScreen(transform.position);
                 var pose = _raycastProvider.GetRaycastResult(characterPosOnScreen);
-                if (pose != default)
+                if (pose.position != Vector3.zero)
                 {
                     Vector3 targetPosition = new Vector3(transform.position.x, pose.position.y, transform.position.z);
                     transform.position = targetPosition;
+                    _groudFound = true;
                 }
             }
         }
