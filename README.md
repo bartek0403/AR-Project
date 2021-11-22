@@ -9,7 +9,7 @@ Each food collected should result a random dog fact appear for 3 second. Food pi
 Highlights:
 - Injected dependency (ICharacterMovementProvider, IRaycastProvider) via GameController.cs
 - Possible collectibles extension via ICollectible
-- generic async http client
+- Generic async http client (WIP)
 - Injected dependency of client response serializer
 - UniRx usage: Chacater.cs -> OnTriggerEnter, CollectibleCounter.cs
 - A few test NUnit
